@@ -72,18 +72,18 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex flex-col gap-1">
                             <a href="{{ route('admin.contact-messages.show', $message->id) }}" class="text-blue-600 hover:text-blue-900 mr-3">View</a>
-                            @if(is_null($message->read_at))
+                            {{-- @if(is_null($message->read_at ? null :  '2025-06-02 19:35:15'))
                             <form action="{{ route('admin.contact-messages.markAsRead', $message->id) }}" method="POST" class="inline">
                                 @csrf
                                 <button type="submit" class="text-green-600 hover:text-green-900">Mark as Read</button>
                             </form>
-                            @endif
-                            <form action="{{ route('admin.contact-messages.toggleVisibility', $message->id) }}" method="POST" class="inline">
+                            @endif --}}
+                            {{-- <form action="{{ route('admin.contact-messages.toggleVisibility', $message->id) }}" method="POST" class="inline">
                                 @csrf
                                 <button type="submit" class="text-yellow-600 hover:text-yellow-900">
                                     {{ $message->is_visible ? 'Hide' : 'Show' }}
                                 </button>
-                            </form>
+                            </form> --}}
                             <form action="{{ route('admin.contact-messages.destroy', $message->id) }}" method="POST" class="inline">
                                 @csrf
                                 @method('DELETE')

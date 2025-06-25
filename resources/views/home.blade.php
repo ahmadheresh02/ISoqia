@@ -765,44 +765,79 @@
                     </div><!-- End Google Maps -->
 
                     {{-- Success Message --}}
-        @if(session('success'))
+        {{-- @if(session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
+            </div>e
+        @endif --}}
+                    <div class="col-lg-6">
+    <form action="{{ route('contact.submit') }}" method="POST" class="php-email-form" data-aos="fade-up" data-aos-delay="400">
+        @csrf
+
+        <!-- Success Message -->
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-                    <div class="col-lg-6">
-                        <form action="{{ route('contact.send') }}" method="POST" class="php-email-form"
-                            data-aos="fade-up" data-aos-delay="400" id="contactForm">
-                            @csrf <!-- Laravel CSRF Protection -->
-                            <div class="row gy-4">
-                                <div class="col-md-6">
-                                    <input type="text" name="name" class="form-control" placeholder="Your Name"
-                                        required>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="email" name="email" class="form-control" placeholder="Your Email"
-                                        required>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="tel" name="phone" class="form-control" placeholder="Phone">
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" name="subject" class="form-control" placeholder="Subject"
-                                        required>
-                                </div>
-                                <div class="col-md-12">
-                                    <textarea name="message" class="form-control" rows="6" placeholder="Message"
-                                        required></textarea>
-                                </div>
-                                <div class="col-md-12 text-center">
-                                    <div class="loading">Loading</div>
-                                    <div class="error-message"></div>
-                                    <div class="sent-message">Your message has been sent. Thank you!</div>
-                                    <button type="submit">Send Message</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+        <!-- Error Messages -->
+        @if($errors->any())
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <ul class="mb-0">
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        <div class="row gy-4">
+            <!-- Name and Email Row -->
+            <div class="col-md-6">
+                <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
+                <input type="text" name="name" id="name" class="form-control" required
+                       value="{{ old('name') }}" placeholder="Your full name">
+            </div>
+
+            <div class="col-md-6">
+                <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                <input type="email" name="email" id="email" class="form-control" required
+                       value="{{ old('email') }}" placeholder="your.email@example.com">
+            </div>
+            <!-- Phone and Package Row -->
+            <div class="col-md-6">
+                <label for="phone" class="form-label">Phone</label>
+                <input type="tel" name="phone" id="phone" class="form-control"
+                       value="{{ old('phone') }}" placeholder="+962 XX XXX XXXX">
+            </div>
+
+            <div class="col-md-6">
+                <label for="package" class="form-label">Package</label>
+                <input type="text" name="package" id="package" class="form-control"
+                       value="{{ old('package') }}" placeholder="Which product interests you?">
+            </div>
+            <!-- Subject Full Width -->
+            <div class="col-12">
+                <label for="title" class="form-label">Subject <span class="text-danger">*</span></label>
+                <input type="text" name="title" id="title" class="form-control" required
+                       value="{{ old('title') }}" placeholder="Brief subject of your message">
+            </div>
+            <!-- Message Full Width -->
+            <div class="col-12">
+                <label for="description" class="form-label">Message <span class="text-danger">*</span></label>
+                <textarea name="description" id="description" class="form-control" rows="6" required
+                          placeholder="Please provide details about your inquiry...">{{ old('description') }}</textarea>
+            </div>
+            <!-- Submit Button -->
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-envelope me-2"></i>Send Message
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
 
                 </div>
 

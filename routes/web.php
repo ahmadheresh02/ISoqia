@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\{
     IconController
 };
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ContactController;
 
 // Public routes
 // Route::post('/contact', [App\Http\Controllers\ContactController::class, 'store'])
@@ -82,6 +83,29 @@ Route::post('/contact', [HomeController::class, 'send'])->name('contact.send');
 
 // filepath: routes/web.php
 
-Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
+// Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
 // Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
+
+
+Route::get('/contact', function () {
+    return view('contact'); // Assuming your form is in resources/views/contact.blade.php
+})->name('contact');
+
+// Route to handle form submission (POST)
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.submit');
+
+// Optional: Route for admin to view contact messages
+// Route::get('/admin/contact-messages', function () {
+//     $messages = \App\Models\ContactMessage::with('deleted_at')
+//         ->orderBy('created_at', 'desc')
+//         ->get();
+
+//     return view('admin.contact-messages', compact('messages'));
+// })->name('admin.contact.index');
+
+// Optional: Route to mark message as read
+// Route::patch('/admin/contact-messages/{contactMessage}/read', function (\App\Models\ContactMessage $contactMessage) {
+//     $contactMessage->markAsRead();
+//     return back()->with('success', 'Message marked as read');
+// })->name('admin.contact.read');
 require __DIR__ . '/auth.php';
