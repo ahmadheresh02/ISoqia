@@ -14,7 +14,7 @@ class AboutUsController extends Controller
     public function index()
     {
         $aboutUs = AboutUs::with('updatedBy')->first();
-        
+
         if (!$aboutUs) {
             $aboutUs = AboutUs::create([
                 'title' => 'About Us',
@@ -22,14 +22,14 @@ class AboutUsController extends Controller
                 'updated_by' => Auth::user()->id
             ]);
         }
-        
+
         return view('admin.about.index', compact('aboutUs'));
     }
 
     public function edit()
     {
         $aboutUs = AboutUs::first();
-        
+
         if (!$aboutUs) {
             $aboutUs = AboutUs::create([
                 'title' => 'About Us',
@@ -37,10 +37,23 @@ class AboutUsController extends Controller
                 'updated_by' => Auth::user()->id
             ]);
         }
-        
+
         return view('admin.about.edit', compact('aboutUs'));
     }
 
+//     public function edit($id)
+// {
+//     $about = AboutUs::findOrFail($id);
+//     return view('admin.about.edit', compact('about'));
+// }
+
+
+    // public function update(Request $request, $id)
+    // {
+    //     $about = AboutUs::findOrFail($id);
+    //     $about->update($request->all());
+    //     return redirect()->route('about.edit', $id);
+    // }
     public function update(Request $request)
     {
         $request->validate([
@@ -50,7 +63,7 @@ class AboutUsController extends Controller
         ]);
 
         $aboutUs = AboutUs::first();
-        
+
         if (!$aboutUs) {
             $aboutUs = new AboutUs();
         }
@@ -68,7 +81,7 @@ class AboutUsController extends Controller
             if ($aboutUs->image_url) {
                 Storage::delete('public/' . $aboutUs->image_url);
             }
-            
+
             $image = $request->file('image');
             $imageName = time() . '_about_' . Str::random(10) . '.' . $image->getClientOriginalExtension();
             $image->storeAs('public/about', $imageName);
@@ -84,4 +97,5 @@ class AboutUsController extends Controller
         return redirect()->route('admin.about.index')
                         ->with('success', 'About Us page updated successfully!');
     }
+
 }

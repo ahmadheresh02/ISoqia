@@ -76,5 +76,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/contact', [HomeController::class, 'send'])->name('contact.send');
 
+// Route::resource('admin/products', ProductController::class);
+// Route::resource('admin/about', AboutController::class)->only(['edit', 'update']);
 
+
+// filepath: routes/web.php
+
+Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
+// Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
 require __DIR__ . '/auth.php';

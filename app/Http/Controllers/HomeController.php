@@ -6,13 +6,24 @@ use Illuminate\Http\Request;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+use App\Models\Product;
+use App\Models\AboutUs;
+// use Illuminate\Database\Eloquent\Model;
+
+
 class HomeController extends Controller
 {
-    public function index()
-    {
-        return view('home');
-    }
+    // public function index()
+    // {
+    //     return view('home');
+    // }
 
+    public function index()
+{
+    $products = Product::all();
+    $about = AboutUs::first();
+    return view('home', compact('products', 'about'));
+}
     public function send(Request $request)
     {
         $request->validate([

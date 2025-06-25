@@ -176,46 +176,18 @@
             <div class="container">
                 <div class="row gy-4">
                     <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
-                        <p class="who-we-are">Who We Are</p>
-                        <h3>Pioneering Smart Water Solutions for a Sustainable Future</h3>
+                        <p class="who-we-are">{{ $about->title ?? 'About Us' }}</p>
                         <p class="fst-italic">
-                            Sogia is a leading Jordanian innovator in environmental technologies, specializing in AI and
-                            IoT-driven water management solutions.
+                            {{ $about->content ?? '' }}
                         </p>
-                        <ul>
-                            <li><i class="bi bi-check-circle"></i> <span>We combine AI, IoT, ICT and solar energy to
-                                    enhance water efficiency across multiple sectors</span></li>
-                            <li><i class="bi bi-check-circle"></i> <span>Our solutions minimize water waste while
-                                    maximizing agricultural and industrial productivity</span></li>
-                            <li><i class="bi bi-check-circle"></i> <span>Recognized by the European Union and partnered
-                                    with leading research institutions like ICARDA and the National Agricultural
-                                    Research Center</span></li>
-                        </ul>
-                        <a href="#pricing" class="read-more"><span>Discover Our Solutions</span><i
-                                class="bi bi-arrow-right"></i></a>
                     </div>
-
                     <div class="col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
-                        <div class="row gy-4">
-                            <div class="col-lg-6">
-                                <img src="img/logo2.png" class="img-fluid" alt="Smart Water Management System">
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="row gy-4">
-                                    <div class="col-lg-12">
-                                        <img src="{{ asset('img/image2.png') }}" class="img-fluid"
-                                            alt="Smart Irrigation Solution">
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <img src="img/logo1.png" class="img-fluid" alt="Solar-Powered Water System">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <img src="{{ asset($about->image_url ?? 'img/default.png') }}" class="img-fluid" alt="About Us Image">
                     </div>
                 </div>
             </div>
-        </section><!-- /About Section -->
+        </section>
+        <!-- /About Section -->
 
         <!-- Clients Section -->
         <section id="clients" class="clients section">
@@ -471,87 +443,30 @@
 
         <!-- Pricing Section -->
         <section id="pricing" class="pricing section">
-
-            <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
                 <h2>Our Products</h2>
                 <p>Innovative water management products for every need</p>
-            </div><!-- End Section Title -->
-
-            <div class="container">
-
-                <div class="row gy-4">
-
-                    <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="pricing-item">
-                            <!-- Added Image -->
-                            <div class="pricing-img-top">
-                                <img src="{{ asset('img/image2.png') }}" alt="Intelligent Water Consumption System"
-                                    class="img-fluid">
-                            </div>
-                            <h3>Intelligent Water System</h3>
-                            <p class="description">AI and IoT system to optimize irrigation processes</p>
-                            <h4><sup>$</sup>499<span></span></h4>
-                            <a href="#contact" class="cta-btn">Contact Sales</a>
-                            <p class="text-center small">Easy installation</p>
-                            <ul>
-                                <li><i class="bi bi-check"></i> <span>Real-time water tracking</span></li>
-                                <li><i class="bi bi-check"></i> <span>Automated recommendations</span></li>
-                                <li><i class="bi bi-check"></i> <span>Mobile app integration</span></li>
-                                <!-- <li class="na"><i class="bi bi-x"></i> <span>Solar powered option</span></li> -->
-                                <!-- <li class="na"><i class="bi bi-x"></i> <span>Advanced analytics</span></li> -->
-                            </ul>
-                        </div>
-                    </div><!-- End Pricing Item -->
-
-                    <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="pricing-item ">
-                            <!-- Added Image -->
-                            <div class="pricing-img-top">
-                                <img src="{{ asset('img/image2.png') }}" alt="Quantity Control Device"
-                                    class="img-fluid">
-                            </div>
-                            <h3>Quantity Control Device</h3>
-                            <p class="description">Precise water measurement and delivery for crops</p>
-                            <h4><sup>$</sup>299<span></span></h4>
-                            <a href="#contact" class="cta-btn">Contact Sales</a>
-                            <p class="text-center small">30-day trial</p>
-                            <ul>
-                                <li><i class="bi bi-check"></i> <span>Precise water measurement</span></li>
-                                <li><i class="bi bi-check"></i> <span>Reduces water wastage</span></li>
-                                <li><i class="bi bi-check"></i> <span>Easy to install</span></li>
-                                <li><i class="bi bi-check"></i> <span>Compatible with existing systems</span></li>
-                                <!-- <li class="na"><i class="bi bi-x"></i> <span>Solar powered option</span></li> -->
-                            </ul>
-                        </div>
-                    </div><!-- End Pricing Item -->
-
-                    <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="300">
-                        <div class="pricing-item">
-                            <!-- Added Image -->
-                            <div class="pricing-img-top">
-                                <img src="{{ asset('img/image2.png') }}" alt="Solar-Powered Water System"
-                                    class="img-fluid">
-                            </div>
-                            <h3>Solar Water System</h3>
-                            <p class="description">Sustainable water solutions powered by solar energy</p>
-                            <h4><sup>$</sup>899<span></span></h4>
-                            <a href="#contact" class="cta-btn">Contact Sales</a>
-                            <p class="text-center small">Custom solutions available</p>
-                            <ul>
-                                <li><i class="bi bi-check"></i> <span>Energy independent</span></li>
-                                <li><i class="bi bi-check"></i> <span>Low maintenance</span></li>
-                                <li><i class="bi bi-check"></i> <span>24/7 operation</span></li>
-                                <li><i class="bi bi-check"></i> <span>Reduces energy costs</span></li>
-                                <li><i class="bi bi-check"></i> <span>Environmentally friendly</span></li>
-                            </ul>
-                        </div>
-                    </div><!-- End Pricing Item -->
-
-                </div>
-
             </div>
-
+            <div class="container">
+                <div class="row gy-4">
+                    @foreach($products as $product)
+                        <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="{{ 100 * ($loop->index + 1) }}">
+                            <div class="pricing-item">
+                                <div class="pricing-img-top">
+                                    <img src="{{ asset($product->featured_image_url ?? 'img/default.png') }}" alt="{{ $product->name }}" class="img-fluid">
+                                </div>
+                                <h3>{{ $product->name }}</h3>
+                                <p class="description">{{ $product->description }}</p>
+                                <h4>
+                                    <sup>$</sup>{{ $product->price }}<span></span>
+                                </h4>
+                                <a href="#contact" class="cta-btn">Contact Sales</a>
+                                <p class="text-center small">Stock: {{ $product->stock_quantity }}</p>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
         </section><!-- /Pricing Section -->
 
         <!-- Faq Section -->
@@ -849,6 +764,12 @@
                             loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div><!-- End Google Maps -->
 
+                    {{-- Success Message --}}
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
                     <div class="col-lg-6">
                         <form action="{{ route('contact.send') }}" method="POST" class="php-email-form"
                             data-aos="fade-up" data-aos-delay="400" id="contactForm">

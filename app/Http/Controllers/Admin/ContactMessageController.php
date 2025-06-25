@@ -18,6 +18,29 @@ class ContactMessageController extends Controller
         return view('admin.contact-messages.index', compact('messages'));
     }
 
+    public function send(Request $request)
+{
+    $validated = $request->validate([
+        'name' => 'required|string',
+        'email' => 'required|email',
+        'subject' => 'required|string', // maps to 'title'
+        'message' => 'required|string', // maps to 'description'
+        'phone' => 'nullable|string',
+        'package' => 'nullable|string',
+    ]);
+
+    ContactMessage::create([
+        'name' => $validated['name'],
+        'email' => $validated['email'],
+        'title' => $validated['subject'],
+        'description' => $validated['message'],
+        'phone' => $validated['phone'] ?? null,
+        'package' => $validated['package'] ?? null,
+    ]);
+
+    return back()->with('success', 'Your message has been sent. Thank you!');
+}
+
     public function show(ContactMessage $message)
     {
         if (!$message->read_at) {
